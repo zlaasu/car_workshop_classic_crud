@@ -1,6 +1,6 @@
 package org.zlasu.util.crud;
 
-import org.zlasu.util.db.DbUtil;
+import org.zlasu.util.db.DbConnector;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public abstract class DaoMain implements DaoInterface {
 
     @Override
     public ModelInterface readById(int id) {
-        try (Connection connection = DbUtil.getConnection()) {
+        try (Connection connection = DbConnector.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(getReadByIdQuery())) {
                 preparedStatement.setInt(1, id);
                 ResultSet resultSet = preparedStatement.executeQuery();
@@ -43,7 +43,7 @@ public abstract class DaoMain implements DaoInterface {
 
     @Override
     public boolean delete(ModelInterface item) {
-        try (Connection connection = DbUtil.getConnection()) {
+        try (Connection connection = DbConnector.getConnection()) {
             if (item.getId() != 0) {
                 PreparedStatement preparedStatement = connection.prepareStatement(getDeleteQuery());
                 preparedStatement.setInt(1, item.getId());
@@ -59,7 +59,7 @@ public abstract class DaoMain implements DaoInterface {
 
     @Override
     public ModelInterface create(ModelInterface item) {
-        try (Connection connection = DbUtil.getConnection()) {
+        try (Connection connection = DbConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(getCreateQuery(),
                     Statement.RETURN_GENERATED_KEYS);
 
@@ -87,7 +87,7 @@ public abstract class DaoMain implements DaoInterface {
 
     @Override
     public ModelInterface update(ModelInterface item) {
-        try (Connection connection = DbUtil.getConnection()) {
+        try (Connection connection = DbConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(getUpdateQuery());
 
             ArrayList<String> params = getObjectParams(item);
@@ -108,7 +108,7 @@ public abstract class DaoMain implements DaoInterface {
 
     @Override
     public List<ModelInterface> findAll() {
-        try (Connection conn = DbUtil.getConnection()) {
+        try (Connection conn = DbConnector.getConnection()) {
             List<ModelInterface> modelInterfaces = new ArrayList<>();
 
             PreparedStatement statement = conn.prepareStatement(getFindAllQuery());
