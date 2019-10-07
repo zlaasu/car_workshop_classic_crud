@@ -1,10 +1,14 @@
 package org.zlasu.model.customer;
 
-import org.zlasu.model.MainModel;
+import lombok.Getter;
+import lombok.Setter;
+import org.zlasu.util.crud.ModelInterface;
 
 import java.util.Date;
 
-public class Customer extends MainModel {
+@Getter
+@Setter
+public class Customer {
     private int id;
     private String name;
     private String lastname;

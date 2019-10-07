@@ -1,11 +1,15 @@
 package org.zlasu.model.order;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.zlasu.model.customer.Customer;
 import org.zlasu.model.status.Status;
 import org.zlasu.model.vehicle.Vehicle;
 
 import java.util.Date;
 
+@Getter
+@Setter
 public class Order {
     private int id;
     private Customer customer;
