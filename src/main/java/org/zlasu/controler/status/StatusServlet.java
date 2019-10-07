@@ -28,9 +28,6 @@ public class StatusServlet extends HttpServlet {
 
         if (validator.isNotPositiveId(status.getId() + "", "id")
                 | validator.isEmpty(status.getName(), "name")) {
-            System.out.println("TU");
-            System.out.println(status.getName());
-            System.out.println(status.getId());
             jsonString = gson.toJson(validator);
             response.setStatus(400);
         } else {
