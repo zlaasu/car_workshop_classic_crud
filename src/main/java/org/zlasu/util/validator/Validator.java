@@ -18,7 +18,7 @@ public class Validator {
 
     public boolean isEmpty(String string, String key) {
         if (isEmpty(string)) {
-            errorMessage.append(key).append(" - is EMPTY | ");
+            errorMessage.append(key).append(" - is MISSING | ");
             return true;
         }
 
@@ -62,6 +62,10 @@ public class Validator {
     }
 
     public boolean isNotDouble(String string, String key) {
+        if (isEmpty(string, key)) {
+            return false;
+        }
+
         return !isDouble(string, key);
     }
 
@@ -94,7 +98,32 @@ public class Validator {
     }
 
     public boolean isNotInt(String string, String key) {
+        if (isEmpty(string, key)) {
+            return false;
+        }
+
         return !isInt(string, key);
+    }
+
+    public boolean isNotPositiveId(String string, String key) {
+        if (isEmpty(string, key)) {
+            System.out.println("1");
+            return false;
+        }
+
+        if (isNotInt(string, key)) {
+            System.out.println("2");
+            return false;
+        }
+
+        if (Integer.parseInt(string) < 1) {
+            System.out.println("3");
+            errorMessage.append(key).append(" - must be greater than zero | ");
+            return true;
+        }
+
+        System.out.println("4");
+        return false;
     }
 
     public String getErrorMessage() {

@@ -20,18 +20,37 @@ public class StatusServlet extends HttpServlet {
     private StatusDao statusDao = new StatusDao();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Validator validator = new Validator();
+        PrintWriter out = response.getWriter();
+        String jsonString = "[]";
 
+        Status status = new Gson().fromJson(request.getReader(), Status.class);
+
+        if (validator.isNotPositiveId(status.getId() + "", "id")
+                | validator.isEmpty(status.getName(), "name")) {
+            System.out.println("TU");
+            System.out.println(status.getName());
+            System.out.println(status.getId());
+            jsonString = gson.toJson(validator);
+            response.setStatus(400);
+        } else {
+            statusDao.update(status);
+        }
+
+        out.print(jsonString);
+        out.flush();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Validator validator = new Validator();
         PrintWriter out = response.getWriter();
-        String idStr = request.getPathInfo().split("/")[1];
         String jsonString = "[]";
-
         Status status = null;
 
-        if (validator.isEmpty(idStr, "id") | validator.isNotInt(idStr, "id")) {
+        String idStr = request.getPathInfo().split("/")[1];
+
+        if (validator.isEmpty(idStr, "id")
+                | validator.isNotInt(idStr, "id")) {
             jsonString = gson.toJson(validator);
             response.setStatus(400);
         } else {
@@ -39,6 +58,26 @@ public class StatusServlet extends HttpServlet {
             if (status != null) {
                 jsonString = gson.toJson(status);
             }
+        }
+
+        out.print(jsonString);
+        out.flush();
+    }
+
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Validator validator = new Validator();
+        PrintWriter out = response.getWriter();
+        String jsonString = "[]";
+
+        Status status = new Gson().fromJson(request.getReader(), Status.class);
+        status.setId(0);
+
+        if (validator.isEmpty(status.getName(), "name")) {
+            jsonString = gson.toJson(validator);
+            response.setStatus(400);
+        } else {
+            statusDao.create(status);
+            response.setStatus(201);
         }
 
         out.print(jsonString);
