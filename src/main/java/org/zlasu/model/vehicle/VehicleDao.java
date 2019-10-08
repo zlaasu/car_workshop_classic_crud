@@ -2,15 +2,14 @@ package org.zlasu.model.vehicle;
 
 import org.zlasu.model.customer.Customer;
 import org.zlasu.model.customer.CustomerDao;
-import org.zlasu.model.status.StatusDao;
-import org.zlasu.util.crud.DaoMain;
-import org.zlasu.util.crud.ModelInterface;
+import org.zlasu.model.MainDao;
+import org.zlasu.model.MainModelInterface;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class VehicleDao  extends DaoMain {
+public class VehicleDao  extends MainDao {
 
     private final String READ_BY_ID_QUERY = "SELECT id, customer_id, model, brand, year_of_production," +
             "       registration_number, next_technical_inspection FROM vehicle WHERE id = ?;";
@@ -23,7 +22,7 @@ public class VehicleDao  extends DaoMain {
             "       registration_number, next_technical_inspection FROM vehicle";
 
     @Override
-    protected ModelInterface newObjectFromResultSet(ResultSet resultSet) throws SQLException {
+    protected MainModelInterface newObjectFromResultSet(ResultSet resultSet) throws SQLException {
         Vehicle vehicle = new Vehicle();
         vehicle.setId(resultSet.getInt("id"));
         vehicle.setCustomer((Customer) new CustomerDao().readById(resultSet.getInt("customer_id")));
@@ -36,7 +35,7 @@ public class VehicleDao  extends DaoMain {
     }
 
     @Override
-    public ArrayList<String> getObjectParams(ModelInterface item) {
+    public ArrayList<String> getObjectParams(MainModelInterface item) {
         ArrayList<String> params = new ArrayList();
         Vehicle vehicle = (Vehicle) item;
         params.add(vehicle.getId() + "");

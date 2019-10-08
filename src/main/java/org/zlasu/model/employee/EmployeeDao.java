@@ -1,13 +1,13 @@
 package org.zlasu.model.employee;
 
-import org.zlasu.util.crud.DaoMain;
-import org.zlasu.util.crud.ModelInterface;
+import org.zlasu.model.MainDao;
+import org.zlasu.model.MainModelInterface;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class EmployeeDao extends DaoMain {
+public class EmployeeDao extends MainDao {
 
     private final String READ_BY_ID_QUERY = "SELECT id, name, lastname, address, phone_numer, note, cost_per_hour " +
             "FROM employee where id = ?";
@@ -19,7 +19,7 @@ public class EmployeeDao extends DaoMain {
     private final String FIND_ALL_QUERY = "SELECT id, name, lastname, address, phone_numer, note, cost_per_hour FROM employee";
 
     @Override
-    protected ModelInterface newObjectFromResultSet(ResultSet resultSet) throws SQLException {
+    protected MainModelInterface newObjectFromResultSet(ResultSet resultSet) throws SQLException {
         Employee employee = new Employee();
         employee.setId(resultSet.getInt("id"));
         employee.setName(resultSet.getString("name"));
@@ -32,7 +32,7 @@ public class EmployeeDao extends DaoMain {
     }
 
     @Override
-    public ArrayList<String> getObjectParams(ModelInterface item) {
+    public ArrayList<String> getObjectParams(MainModelInterface item) {
         ArrayList<String> params = new ArrayList();
         Employee status = (Employee) item;
         params.add(String.valueOf(status.getId()));

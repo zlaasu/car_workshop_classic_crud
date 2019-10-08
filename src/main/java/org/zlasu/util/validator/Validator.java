@@ -9,7 +9,7 @@ public class Validator {
     }
 
     public boolean isEmpty(String string) {
-        if (string == null || string.isEmpty()) {
+        if (string == null || string.isEmpty() || string.equals("null")) {
             return true;
         }
 

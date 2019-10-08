@@ -6,14 +6,14 @@ import org.zlasu.model.status.Status;
 import org.zlasu.model.status.StatusDao;
 import org.zlasu.model.vehicle.Vehicle;
 import org.zlasu.model.vehicle.VehicleDao;
-import org.zlasu.util.crud.DaoMain;
-import org.zlasu.util.crud.ModelInterface;
+import org.zlasu.model.MainDao;
+import org.zlasu.model.MainModelInterface;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class OrderDao extends DaoMain {
+public class OrderDao extends MainDao {
 
     private final String READ_BY_ID_QUERY = "SELECT id, customer_id, vehicle_id, status_id, date_order_accepted," +
             "       date_repair_start, problem_description, cost_repair," +
@@ -31,7 +31,7 @@ public class OrderDao extends DaoMain {
             "                  cost_parts, cost_per_hour, number_of_man_hours FROM customer_order";
 
     @Override
-    protected ModelInterface newObjectFromResultSet(ResultSet resultSet) throws SQLException {
+    protected MainModelInterface newObjectFromResultSet(ResultSet resultSet) throws SQLException {
         Order order = new Order();
         order.setId(resultSet.getInt("id"));
         order.setCustomer((Customer) new CustomerDao().readById(resultSet.getInt("customer_id")));
@@ -48,7 +48,7 @@ public class OrderDao extends DaoMain {
     }
 
     @Override
-    public ArrayList<String> getObjectParams(ModelInterface item) {
+    public ArrayList<String> getObjectParams(MainModelInterface item) {
         ArrayList<String> params = new ArrayList();
         Order order = (Order) item;
         params.add(order.getId() + "");

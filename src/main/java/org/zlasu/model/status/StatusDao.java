@@ -1,14 +1,13 @@
 package org.zlasu.model.status;
 
-import org.zlasu.model.order.Order;
-import org.zlasu.util.crud.DaoMain;
-import org.zlasu.util.crud.ModelInterface;
+import org.zlasu.model.MainDao;
+import org.zlasu.model.MainModelInterface;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class StatusDao extends DaoMain {
+public class StatusDao extends MainDao {
     private final String READ_BY_ID_QUERY = "SELECT id, name FROM status where id = ?";
     private final String DELETE_QUERY = "DELETE FROM status WHERE id = ?";
     private final String CREATE_QUERY = "INSERT INTO status(id, name) VALUES (?, ?)";
@@ -16,7 +15,7 @@ public class StatusDao extends DaoMain {
     private final String FIND_ALL_QUERY = "SELECT id, name FROM status";
 
     @Override
-    protected ModelInterface newObjectFromResultSet(ResultSet resultSet) throws SQLException {
+    protected MainModelInterface newObjectFromResultSet(ResultSet resultSet) throws SQLException {
         Status status = new Status();
         status.setId(resultSet.getInt("id"));
         status.setName(resultSet.getString("name"));
@@ -24,7 +23,7 @@ public class StatusDao extends DaoMain {
     }
 
     @Override
-    public ArrayList<String> getObjectParams(ModelInterface item) {
+    public ArrayList<String> getObjectParams(MainModelInterface item) {
         ArrayList<String> params = new ArrayList();
         Status status = (Status) item;
         params.add(String.valueOf(status.getId()));

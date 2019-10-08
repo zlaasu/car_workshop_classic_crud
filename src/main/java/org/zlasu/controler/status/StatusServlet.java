@@ -1,84 +1,59 @@
 package org.zlasu.controler.status;
 
 import com.google.gson.Gson;
+import org.zlasu.controler.MainServlet;
+import org.zlasu.model.MainModel;
 import org.zlasu.model.status.Status;
 import org.zlasu.model.status.StatusDao;
 import org.zlasu.util.validator.Validator;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet("/status/id/*")
-public class StatusServlet extends HttpServlet {
+public class StatusServlet extends MainServlet {
 
-    private Gson gson = new Gson();
     private StatusDao statusDao = new StatusDao();
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Validator validator = new Validator();
-        PrintWriter out = response.getWriter();
-        String jsonString = "[]";
-
-        Status status = new Gson().fromJson(request.getReader(), Status.class);
-
-        if (validator.isNotPositiveId(status.getId() + "", "id")
-                | validator.isEmpty(status.getName(), "name")) {
-            jsonString = gson.toJson(validator);
-            response.setStatus(400);
-        } else {
-            statusDao.update(status);
-        }
-
-        out.print(jsonString);
-        out.flush();
+    @Override
+    protected MainModel gsonCast(HttpServletRequest request) throws IOException {
+        return new Gson().fromJson(request.getReader(), Status.class);
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Validator validator = new Validator();
-        PrintWriter out = response.getWriter();
-        String jsonString = "[]";
-        Status status = null;
-
-        String idStr = request.getPathInfo().split("/")[1];
-
-        if (validator.isEmpty(idStr, "id")
-                | validator.isNotInt(idStr, "id")) {
-            jsonString = gson.toJson(validator);
-            response.setStatus(400);
-        } else {
-            status = (Status) statusDao.readById(Integer.parseInt(idStr));
-            if (status != null) {
-                jsonString = gson.toJson(status);
-            }
-        }
-
-        out.print(jsonString);
-        out.flush();
+    @Override
+    protected MainModel getModelById(int id) {
+        return (MainModel) statusDao.readById(id);
     }
 
-    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Validator validator = new Validator();
-        PrintWriter out = response.getWriter();
-        String jsonString = "[]";
+    @Override
+    protected boolean deleteById(int id) {
+        return statusDao.delete(statusDao.readById(id));
+    }
 
-        Status status = new Gson().fromJson(request.getReader(), Status.class);
+    @Override
+    protected void create(MainModel mainModel) {
+        Status status = (Status) mainModel;
         status.setId(0);
+        statusDao.create(status);
+    }
 
-        if (validator.isEmpty(status.getName(), "name")) {
-            jsonString = gson.toJson(validator);
-            response.setStatus(400);
-        } else {
-            statusDao.create(status);
-            response.setStatus(201);
-        }
+    @Override
+    protected boolean createValidator(Validator validator, MainModel mainModel) {
+        Status status = (Status) mainModel;
+        return validator.isEmpty(status.getName(), "name");
+    }
 
-        out.print(jsonString);
-        out.flush();
+    @Override
+    protected void update(MainModel mainModel) {
+        Status status = (Status) mainModel;
+        statusDao.update(status);
+    }
+
+    @Override
+    protected boolean updateValidator(Validator validator, MainModel mainModel) {
+        Status status = (Status) mainModel;
+        return validator.isNotPositiveId(status.getId() + "", "id") | createValidator(validator, mainModel);
     }
 
 }

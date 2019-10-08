@@ -2,15 +2,15 @@ package org.zlasu.model.vehicle;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.zlasu.util.crud.ModelInterface;
+import org.zlasu.model.MainModelInterface;
 import org.zlasu.model.customer.Customer;
-import org.zlasu.util.crud.ModelMain;
+import org.zlasu.model.MainModel;
 
 import java.util.Date;
 
 @Getter
 @Setter
-public class Vehicle extends ModelMain implements ModelInterface {
+public class Vehicle extends MainModel implements MainModelInterface {
     private int id;
     private Customer customer;
     private String model;

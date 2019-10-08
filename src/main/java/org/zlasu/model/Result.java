@@ -1,4 +1,4 @@
-package org.zlasu.util.crud;
+package org.zlasu.model;
 
 import java.util.List;
 

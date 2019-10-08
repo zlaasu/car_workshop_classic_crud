@@ -1,16 +1,20 @@
-package org.zlasu.util.crud;
+package org.zlasu.model;
 
 import org.zlasu.util.db.DbConnector;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class DaoMain implements DaoInterface {
+public abstract class MainDao implements DaoInterface {
 
-    protected abstract ModelInterface newObjectFromResultSet(ResultSet resultSet) throws SQLException;
+    protected DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
-    protected abstract ArrayList<String> getObjectParams(ModelInterface item);
+    protected abstract MainModelInterface newObjectFromResultSet(ResultSet resultSet) throws SQLException;
+
+    protected abstract ArrayList<String> getObjectParams(MainModelInterface item);
 
     protected abstract String getReadByIdQuery();
 
@@ -23,7 +27,7 @@ public abstract class DaoMain implements DaoInterface {
     protected abstract String getFindAllQuery();
 
     @Override
-    public ModelInterface readById(int id) {
+    public MainModelInterface readById(int id) {
         try (Connection connection = DbConnector.getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement(getReadByIdQuery())) {
                 preparedStatement.setInt(1, id);
@@ -42,7 +46,7 @@ public abstract class DaoMain implements DaoInterface {
     }
 
     @Override
-    public boolean delete(ModelInterface item) {
+    public boolean delete(MainModelInterface item) {
         try (Connection connection = DbConnector.getConnection()) {
             if (item.getId() != 0) {
                 PreparedStatement preparedStatement = connection.prepareStatement(getDeleteQuery());
@@ -58,7 +62,7 @@ public abstract class DaoMain implements DaoInterface {
     }
 
     @Override
-    public ModelInterface create(ModelInterface item) {
+    public MainModelInterface create(MainModelInterface item) {
         try (Connection connection = DbConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(getCreateQuery(),
                     Statement.RETURN_GENERATED_KEYS);
@@ -86,7 +90,7 @@ public abstract class DaoMain implements DaoInterface {
     }
 
     @Override
-    public ModelInterface update(ModelInterface item) {
+    public MainModelInterface update(MainModelInterface item) {
         try (Connection connection = DbConnector.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(getUpdateQuery());
 
@@ -107,18 +111,18 @@ public abstract class DaoMain implements DaoInterface {
     }
 
     @Override
-    public List<ModelInterface> findAll() {
+    public List<MainModelInterface> findAll() {
         try (Connection conn = DbConnector.getConnection()) {
-            List<ModelInterface> modelInterfaces = new ArrayList<>();
+            List<MainModelInterface> mainModelInterfaces = new ArrayList<>();
 
             PreparedStatement statement = conn.prepareStatement(getFindAllQuery());
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                modelInterfaces.add(newObjectFromResultSet(resultSet));
+                mainModelInterfaces.add(newObjectFromResultSet(resultSet));
             }
 
-            return modelInterfaces;
+            return mainModelInterfaces;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

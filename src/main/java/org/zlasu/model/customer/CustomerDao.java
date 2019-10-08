@@ -1,14 +1,13 @@
 package org.zlasu.model.customer;
 
-import org.zlasu.model.employee.Employee;
-import org.zlasu.util.crud.DaoMain;
-import org.zlasu.util.crud.ModelInterface;
+import org.zlasu.model.MainDao;
+import org.zlasu.model.MainModelInterface;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class CustomerDao extends DaoMain {
+public class CustomerDao extends MainDao {
 
     private final String READ_BY_ID_QUERY = "SELECT id, name, lastname, date_of_birth FROM customer WHERE id = ?";
     private final String DELETE_QUERY = "DELETE FROM customer WHERE id = ?";
@@ -17,23 +16,24 @@ public class CustomerDao extends DaoMain {
     private final String FIND_ALL_QUERY = "SELECT id, name, lastname, date_of_birth FROM customer";
 
     @Override
-    protected ModelInterface newObjectFromResultSet(ResultSet resultSet) throws SQLException {
+    protected MainModelInterface newObjectFromResultSet(ResultSet resultSet) throws SQLException {
         Customer customer = new Customer();
         customer.setId(resultSet.getInt("id"));
         customer.setName(resultSet.getString("name"));
         customer.setLastname(resultSet.getString("lastname"));
+        System.out.println();
         customer.setDate_of_birth(resultSet.getDate("date_of_birth"));
         return customer;
     }
 
     @Override
-    public ArrayList<String> getObjectParams(ModelInterface item) {
+    public ArrayList<String> getObjectParams(MainModelInterface item) {
         ArrayList<String> params = new ArrayList();
         Customer customer = (Customer) item;
         params.add(String.valueOf(customer.getId()));
         params.add(customer.getName());
         params.add(customer.getLastname());
-        params.add(customer.getDate_of_birth() + "");
+        params.add(dateFormat.format(customer.getDate_of_birth()) + "");
         return params;
     }
 
