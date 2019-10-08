@@ -1,0 +1,26 @@
+version: "3"
+services:
+  backend:
+    build: backend
+    ports:
+      - "0:8080"
+    labels:
+      - "traefik.frontend.rule=Host:BUILD_ENV.zlasu.org; PathPrefixStrip:/backend"
+      - "traefik.docker.network=proxy"
+      - "traefik.port=8080"
+    networks:
+      - BUILD_ENV
+      - proxy
+
+  db_host:
+    build: db
+    ports:
+      - "0:3306"
+    networks:
+      - BUILD_ENV
+
+
+networks:
+  BUILD_ENV:
+  proxy:
+    external: true

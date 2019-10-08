@@ -25,3 +25,4 @@ car_workshop_classic_crud.iml
 .idea
 target
 out
+docker/devenv/data/*

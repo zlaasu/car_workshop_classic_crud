@@ -1,0 +1,5 @@
+FROM library/mysql
+EXPOSE 3306
+ENV MYSQL_USER root
+ENV MYSQL_ROOT_PASSWORD qqq123
+ENV MYSQL_DB contactapp
