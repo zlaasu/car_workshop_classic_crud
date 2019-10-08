@@ -80,6 +80,7 @@ public abstract class MainServlet extends HttpServlet {
             jsonString = gson.toJson(validator);
             response.setStatus(400);
         } else {
+            //TODO when reference ID is wrong (ex. customer dont exists)
             create(mainModel);
             response.setStatus(201);
         }

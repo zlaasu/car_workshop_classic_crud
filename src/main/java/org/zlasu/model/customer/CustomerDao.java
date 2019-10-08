@@ -21,7 +21,6 @@ public class CustomerDao extends MainDao {
         customer.setId(resultSet.getInt("id"));
         customer.setName(resultSet.getString("name"));
         customer.setLastname(resultSet.getString("lastname"));
-        System.out.println();
         customer.setDate_of_birth(resultSet.getDate("date_of_birth"));
         return customer;
     }

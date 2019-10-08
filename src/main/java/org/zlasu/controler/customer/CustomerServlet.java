@@ -41,6 +41,7 @@ public class CustomerServlet extends MainServlet {
     @Override
     protected boolean createValidator(Validator validator, MainModel mainModel) {
         Customer customer = (Customer) mainModel;
+
         return validator.isEmpty(customer.getName(), "name")
                 | validator.isEmpty(customer.getLastname(), "lastname")
                 | validator.isEmpty(customer.getDate_of_birth() + "", "date_of_birth");

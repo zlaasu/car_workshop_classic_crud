@@ -42,12 +42,6 @@ public class EmployeeServlet extends MainServlet {
     protected boolean createValidator(Validator validator, MainModel mainModel) {
         Employee employee = (Employee) mainModel;
 
-        System.out.println(validator.isEmpty(employee.getName(), "name"));
-        System.out.println(validator.isEmpty(employee.getLastname(), "lastname"));
-        System.out.println(validator.isEmpty(employee.getAddress() + "", "address"));
-        System.out.println(validator.isEmpty(employee.getPhone_number() + "", "phone_number"));
-        System.out.println(validator.isDouble(employee.getCost_per_hour() + "", "cost_per_hour"));
-
         return validator.isEmpty(employee.getName(), "name")
                 | validator.isEmpty(employee.getLastname(), "lastname")
                 | validator.isEmpty(employee.getAddress() + "", "address")

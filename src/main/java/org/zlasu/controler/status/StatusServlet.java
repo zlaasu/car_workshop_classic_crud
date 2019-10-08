@@ -41,6 +41,7 @@ public class StatusServlet extends MainServlet {
     @Override
     protected boolean createValidator(Validator validator, MainModel mainModel) {
         Status status = (Status) mainModel;
+
         return validator.isEmpty(status.getName(), "name");
     }
 

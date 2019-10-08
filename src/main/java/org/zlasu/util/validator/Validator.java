@@ -2,6 +2,8 @@ package org.zlasu.util.validator;
 
 public class Validator {
 
+    //TODO add DATE validation
+
     private StringBuffer errorMessage;
 
     public Validator() {

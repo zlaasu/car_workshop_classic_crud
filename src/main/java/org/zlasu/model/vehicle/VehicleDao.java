@@ -1,7 +1,5 @@
 package org.zlasu.model.vehicle;
 
-import org.zlasu.model.customer.Customer;
-import org.zlasu.model.customer.CustomerDao;
 import org.zlasu.model.MainDao;
 import org.zlasu.model.MainModelInterface;
 
@@ -25,10 +23,11 @@ public class VehicleDao  extends MainDao {
     protected MainModelInterface newObjectFromResultSet(ResultSet resultSet) throws SQLException {
         Vehicle vehicle = new Vehicle();
         vehicle.setId(resultSet.getInt("id"));
-        vehicle.setCustomer((Customer) new CustomerDao().readById(resultSet.getInt("customer_id")));
+        //vehicle.setCustomer((Customer) new CustomerDao().readById(resultSet.getInt("customer_id")));
+        vehicle.setCustomer_id(resultSet.getInt("customer_id"));
         vehicle.setModel(resultSet.getString("model"));
         vehicle.setBrand(resultSet.getString("brand"));
-        vehicle.setYear_of_production(resultSet.getDate("year_of_production"));
+        vehicle.setYear_of_production(resultSet.getInt("year_of_production"));
         vehicle.setRegistration_number(resultSet.getString("registration_number"));
         vehicle.setNext_technical_inspection(resultSet.getDate("next_technical_inspection"));
         return vehicle;
@@ -39,12 +38,13 @@ public class VehicleDao  extends MainDao {
         ArrayList<String> params = new ArrayList();
         Vehicle vehicle = (Vehicle) item;
         params.add(vehicle.getId() + "");
-        params.add(vehicle.getCustomer().getId() + "");
+        //params.add(vehicle.getCustomer().getId() + "");
+        params.add(vehicle.getCustomer_id() + "");
         params.add(vehicle.getModel());
         params.add(vehicle.getBrand());
         params.add(vehicle.getYear_of_production() + "");
         params.add(vehicle.getRegistration_number());
-        params.add(vehicle.getNext_technical_inspection() + "");
+        params.add(dateFormat.format(vehicle.getNext_technical_inspection()) + "");
         return params;
     }
 

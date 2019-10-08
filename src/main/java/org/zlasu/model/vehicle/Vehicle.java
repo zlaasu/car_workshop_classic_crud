@@ -3,7 +3,6 @@ package org.zlasu.model.vehicle;
 import lombok.Getter;
 import lombok.Setter;
 import org.zlasu.model.MainModelInterface;
-import org.zlasu.model.customer.Customer;
 import org.zlasu.model.MainModel;
 
 import java.util.Date;
@@ -12,10 +11,10 @@ import java.util.Date;
 @Setter
 public class Vehicle extends MainModel implements MainModelInterface {
     private int id;
-    private Customer customer;
+    private int customer_id;
     private String model;
     private String brand;
-    private Date year_of_production;
+    private int year_of_production;
     private String registration_number;
     private Date next_technical_inspection;
 }

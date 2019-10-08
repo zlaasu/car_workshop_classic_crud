@@ -11,6 +11,7 @@ import java.util.List;
 public abstract class MainDao implements DaoInterface {
 
     protected DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    protected DateFormat yearFormat = new SimpleDateFormat("yyyy");
 
     protected abstract MainModelInterface newObjectFromResultSet(ResultSet resultSet) throws SQLException;
 
