@@ -27,7 +27,7 @@ CREATE TABLE vehicle
     customer_id               int,
     model                     VARCHAR(20),
     brand                     VARCHAR(20),
-    year_of_production        YEAR(4),
+    year_of_production        int,
     registration_number       VARCHAR(10),
     next_technical_inspection DATE,
     PRIMARY KEY (id),
