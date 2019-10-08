@@ -26,3 +26,5 @@ car_workshop_classic_crud.iml
 target
 out
 docker/devenv/data/*
+docker/devenv/data_tomcat/*
+docker/devenv/data_mysql/*

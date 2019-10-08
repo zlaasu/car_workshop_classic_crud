@@ -3,7 +3,7 @@
     <Resource name="jdbc/school"
               auth="Container"
               type="javax.sql.DataSource"
-              username="root"
+              username="car_workshop_user"
               password="qqq123"
               driverClassName="com.mysql.jdbc.Driver"
               connectionProperties="useUnicode=yes;characterEncoding=utf8;"
