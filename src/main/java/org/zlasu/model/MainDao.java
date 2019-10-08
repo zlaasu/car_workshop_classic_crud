@@ -41,7 +41,7 @@ public abstract class MainDao implements DaoInterface {
                 resultSet.close();
             }
         } catch (SQLException e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
         return null;
     }
@@ -57,7 +57,7 @@ public abstract class MainDao implements DaoInterface {
                 return true;
             }
         } catch (SQLException e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
         return false;
     }
@@ -85,7 +85,7 @@ public abstract class MainDao implements DaoInterface {
                 return readById(resultSet.getInt(1));
             }
         } catch (SQLException e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
         return null;
     }
@@ -106,7 +106,7 @@ public abstract class MainDao implements DaoInterface {
 
             return readById(Integer.parseInt(params.get(0)));
         } catch (SQLException e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
         return null;
     }
