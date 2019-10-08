@@ -9,14 +9,14 @@ import java.util.ArrayList;
 
 public class EmployeeDao extends MainDao {
 
-    private final String READ_BY_ID_QUERY = "SELECT id, name, lastname, address, phone_numer, note, cost_per_hour " +
+    private final String READ_BY_ID_QUERY = "SELECT id, name, lastname, address, phone_number, note, cost_per_hour " +
             "FROM employee where id = ?";
     private final String DELETE_QUERY = "DELETE FROM employee WHERE id = ?";
-    private final String CREATE_QUERY = "INSERT INTO employee(id, name, lastname, address, phone_numer, note, " +
+    private final String CREATE_QUERY = "INSERT INTO employee(id, name, lastname, address, phone_number, note, " +
             "cost_per_hour) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    private final String UPDATE_QUERY = "UPDATE employee SET name = ?, lastname = ?, address = ?, phone_numer = ?," +
+    private final String UPDATE_QUERY = "UPDATE employee SET name = ?, lastname = ?, address = ?, phone_number = ?," +
             " note = ?, cost_per_hour = ? where id = ?";
-    private final String FIND_ALL_QUERY = "SELECT id, name, lastname, address, phone_numer, note, cost_per_hour FROM employee";
+    private final String FIND_ALL_QUERY = "SELECT id, name, lastname, address, phone_number, note, cost_per_hour FROM employee";
 
     @Override
     protected MainModelInterface newObjectFromResultSet(ResultSet resultSet) throws SQLException {
@@ -25,7 +25,7 @@ public class EmployeeDao extends MainDao {
         employee.setName(resultSet.getString("name"));
         employee.setLastname(resultSet.getString("lastname"));
         employee.setAddress(resultSet.getString("address"));
-        employee.setPhone_number(resultSet.getString("phone_numer"));
+        employee.setPhone_number(resultSet.getString("phone_number"));
         employee.setNote(resultSet.getString("note"));
         employee.setCost_per_hour(resultSet.getDouble("cost_per_hour"));
         return employee;
