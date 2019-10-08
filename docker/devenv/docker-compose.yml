@@ -8,7 +8,11 @@ services:
     ports:
       - 0:8080
     volumes:
-      - .\data_tomcat:/bitnami/tomcat
+      - ./data_tomcat:/bitnami/tomcat
+    labels:
+      - "traefik.frontend.rule=Host:BUILD_ENV.zlasu.org; PathPrefixStrip:/backend"
+      - "traefik.docker.network=proxy"
+      - "traefik.port=8080"
     networks:
       - BUILD_ENV
       - proxy
@@ -24,7 +28,7 @@ services:
       MYSQL_PASSWORD: qqq123
     command: --default-authentication-plugin=mysql_native_password
     volumes:
-      - .\data_mysql:/var/lib/mysql/
+      - ./data_mysql:/var/lib/mysql/
     networks:
       - BUILD_ENV
 
