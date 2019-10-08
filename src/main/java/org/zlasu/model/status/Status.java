@@ -8,6 +8,7 @@ import org.zlasu.util.crud.ModelMain;
 @Getter
 @Setter
 public class Status extends ModelMain implements ModelInterface {
+
     private int id;
     private String name;
 

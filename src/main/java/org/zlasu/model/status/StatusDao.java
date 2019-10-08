@@ -1,5 +1,6 @@
 package org.zlasu.model.status;
 
+import org.zlasu.model.order.Order;
 import org.zlasu.util.crud.DaoMain;
 import org.zlasu.util.crud.ModelInterface;
 

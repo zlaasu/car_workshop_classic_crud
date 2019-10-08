@@ -5,12 +5,15 @@ import lombok.Setter;
 import org.zlasu.model.customer.Customer;
 import org.zlasu.model.status.Status;
 import org.zlasu.model.vehicle.Vehicle;
+import org.zlasu.util.crud.ModelInterface;
+import org.zlasu.util.crud.ModelMain;
 
 import java.util.Date;
 
 @Getter
 @Setter
-public class Order {
+public class Order extends ModelMain implements ModelInterface {
+
     private int id;
     private Customer customer;
     private Vehicle vehicle;
@@ -23,4 +26,5 @@ public class Order {
     private Double cost_parts;
     private Double cost_per_hour;
     private int number_of_man_hours;
+
 }
