@@ -5,8 +5,6 @@ services:
     environment:
       - TOMCAT_USERNAME=root
       - TOMCAT_PASSWORD=qqq123
-    links:
-      - db:mysql
     ports:
       - 0:8080
     volumes:
