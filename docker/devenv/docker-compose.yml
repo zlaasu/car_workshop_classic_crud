@@ -10,7 +10,7 @@ services:
     volumes:
       - ./data_tomcat:/bitnami/tomcat
     labels:
-      - "traefik.frontend.rule=Host:BUILD_ENV.zlasu.org; PathPrefixStrip:/backend"
+      - "traefik.frontend.rule=Host:BUILD_ENV.zlasu.org"
       - "traefik.docker.network=proxy"
       - "traefik.port=8080"
     networks:
