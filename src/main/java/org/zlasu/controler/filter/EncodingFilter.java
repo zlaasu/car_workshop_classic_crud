@@ -6,6 +6,7 @@ import java.io.IOException;
 
 @WebFilter("/*")
 public class EncodingFilter implements Filter {
+
     private String charsetEncoding = "utf-8";
     private String contentType = "application/json";
 

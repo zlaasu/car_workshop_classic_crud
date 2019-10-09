@@ -24,12 +24,12 @@ public class VehicleDao  extends MainDao {
         Vehicle vehicle = new Vehicle();
         vehicle.setId(resultSet.getInt("id"));
         //vehicle.setCustomer((Customer) new CustomerDao().readById(resultSet.getInt("customer_id")));
-        vehicle.setCustomer_id(resultSet.getInt("customer_id"));
+        vehicle.setCustomerId(resultSet.getInt("customer_id"));
         vehicle.setModel(resultSet.getString("model"));
         vehicle.setBrand(resultSet.getString("brand"));
-        vehicle.setYear_of_production(resultSet.getInt("year_of_production"));
-        vehicle.setRegistration_number(resultSet.getString("registration_number"));
-        vehicle.setNext_technical_inspection(resultSet.getDate("next_technical_inspection"));
+        vehicle.setYearOfProduction(resultSet.getInt("year_of_production"));
+        vehicle.setRegistrationNumber(resultSet.getString("registration_number"));
+        vehicle.setNextTechnicalInspection(resultSet.getDate("next_technical_inspection"));
         return vehicle;
     }
 
@@ -39,12 +39,12 @@ public class VehicleDao  extends MainDao {
         Vehicle vehicle = (Vehicle) item;
         params.add(vehicle.getId() + "");
         //params.add(vehicle.getCustomer().getId() + "");
-        params.add(vehicle.getCustomer_id() + "");
+        params.add(vehicle.getCustomerId() + "");
         params.add(vehicle.getModel());
         params.add(vehicle.getBrand());
-        params.add(vehicle.getYear_of_production() + "");
-        params.add(vehicle.getRegistration_number());
-        params.add(dateFormat.format(vehicle.getNext_technical_inspection()) + "");
+        params.add(vehicle.getYearOfProduction() + "");
+        params.add(vehicle.getRegistrationNumber());
+        params.add(dateFormat.format(vehicle.getNextTechnicalInspection()) + "");
         return params;
     }
 
@@ -72,4 +72,5 @@ public class VehicleDao  extends MainDao {
     protected String getFindAllQuery() {
         return FIND_ALL_QUERY;
     }
+
 }

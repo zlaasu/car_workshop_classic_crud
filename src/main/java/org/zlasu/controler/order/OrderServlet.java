@@ -42,17 +42,17 @@ public class OrderServlet extends MainServlet {
     protected boolean createValidator(Validator validator, MainModel mainModel) {
         Order order = (Order) mainModel;
 
-        return  validator.isNotPositiveId(order.getCustomer_id() + "", "customer_id")
-                | validator.isNotPositiveId(order.getVehicle_id() + "", "vehicle_id")
-                | validator.isNotPositiveId(order.getStatus_id() + "", "status_id")
-                | validator.isEmpty(order.getDate_order_accepted() + "", "date_order_accepted")
-                | validator.isEmpty(order.getDate_repair_start() + "", "date_repair_start")
-                | validator.isEmpty(order.getProblem_description(), "problem_description")
-                | validator.isEmpty(order.getRepair_description(), "repair_description")
-                | validator.isNotDouble(order.getCost_repair() + "", "cost_repair")
-                | validator.isNotDouble(order.getCost_parts() + "", "cost_parts")
-                | validator.isNotDouble(order.getCost_per_hour() + "", "cost_per_hour")
-                | validator.isNotPositiveId(order.getNumber_of_man_hours() + "", "number_of_man_hours");
+        return  validator.isNotPositiveId(order.getCustomerId() + "", "customer_id")
+                | validator.isNotPositiveId(order.getVehicleId() + "", "vehicle_id")
+                | validator.isNotPositiveId(order.getStatusId() + "", "status_id")
+                | validator.isEmpty(order.getDateOrderAccepted() + "", "date_order_accepted")
+                | validator.isEmpty(order.getDateRepairStart() + "", "date_repair_start")
+                | validator.isEmpty(order.getProblemDescription(), "problem_description")
+                | validator.isEmpty(order.getRepairDescription(), "repair_description")
+                | validator.isNotDouble(order.getCostRepair() + "", "cost_repair")
+                | validator.isNotDouble(order.getCostParts() + "", "cost_parts")
+                | validator.isNotDouble(order.getCostPerHour() + "", "cost_per_hour")
+                | validator.isNotPositiveId(order.getNumberOfManHours() + "", "number_of_man_hours");
     }
 
     @Override

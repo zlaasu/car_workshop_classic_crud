@@ -20,8 +20,8 @@ public class CustomerDao extends MainDao {
         Customer customer = new Customer();
         customer.setId(resultSet.getInt("id"));
         customer.setName(resultSet.getString("name"));
-        customer.setLastname(resultSet.getString("lastname"));
-        customer.setDate_of_birth(resultSet.getDate("date_of_birth"));
+        customer.setLastName(resultSet.getString("lastname"));
+        customer.setDateOfBirth(resultSet.getDate("date_of_birth"));
         return customer;
     }
 
@@ -31,8 +31,8 @@ public class CustomerDao extends MainDao {
         Customer customer = (Customer) item;
         params.add(String.valueOf(customer.getId()));
         params.add(customer.getName());
-        params.add(customer.getLastname());
-        params.add(dateFormat.format(customer.getDate_of_birth()) + "");
+        params.add(customer.getLastName());
+        params.add(dateFormat.format(customer.getDateOfBirth()) + "");
         return params;
     }
 

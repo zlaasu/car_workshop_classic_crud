@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 
 public abstract class MainServlet extends HttpServlet {
 
-    protected Gson gson = new Gson();
+    protected final Gson gson = new Gson();
 
     protected abstract MainModel gsonCast(HttpServletRequest request) throws IOException;
 
@@ -38,7 +38,7 @@ public abstract class MainServlet extends HttpServlet {
         String idStr = request.getPathInfo().split("/")[1];
 
         if (validator.isEmpty(idStr, "id")
-                | validator.isNotInt(idStr, "id")) {
+                || validator.isNotInt(idStr, "id")) {
             jsonString = gson.toJson(validator);
             response.setStatus(400);
         } else {

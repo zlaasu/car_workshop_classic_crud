@@ -13,7 +13,7 @@ public class Customer extends MainModel implements MainModelInterface {
 
     private int id;
     private String name;
-    private String lastname;
-    private Date date_of_birth;
+    private String lastName;
+    private Date dateOfBirth;
 
 }

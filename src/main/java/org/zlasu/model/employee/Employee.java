@@ -8,11 +8,12 @@ import org.zlasu.model.MainModel;
 @Getter
 @Setter
 public class Employee extends MainModel implements MainModelInterface {
+
     private int id;
     private String name;
-    private String lastname;
+    private String lastName;
     private String address;
-    private String phone_number;
+    private String phoneNumber;
     private String note;
-    private Double cost_per_hour;
+    private Double costPerHour;
 }

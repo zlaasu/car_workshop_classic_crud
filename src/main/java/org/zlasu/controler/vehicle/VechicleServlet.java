@@ -42,12 +42,12 @@ public class VechicleServlet extends MainServlet {
     protected boolean createValidator(Validator validator, MainModel mainModel) {
         Vehicle vehicle = (Vehicle) mainModel;
 
-        return  validator.isNotPositiveId(vehicle.getCustomer_id() + "", "customer_id")
+        return  validator.isNotPositiveId(vehicle.getCustomerId() + "", "customer_id")
                 | validator.isEmpty(vehicle.getModel(), "model")
                 | validator.isEmpty(vehicle.getBrand(), "brand")
-                | validator.isEmpty(vehicle.getYear_of_production() + "", "year_of_production")
-                | validator.isEmpty(vehicle.getRegistration_number(), "registration_number")
-                | validator.isEmpty(vehicle.getNext_technical_inspection() + "", "next_technical_inspection");
+                | validator.isEmpty(vehicle.getYearOfProduction() + "", "year_of_production")
+                | validator.isEmpty(vehicle.getRegistrationNumber(), "registration_number")
+                | validator.isEmpty(vehicle.getNextTechnicalInspection() + "", "next_technical_inspection");
     }
 
     @Override

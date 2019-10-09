@@ -43,11 +43,11 @@ public class EmployeeServlet extends MainServlet {
         Employee employee = (Employee) mainModel;
 
         return validator.isEmpty(employee.getName(), "name")
-                | validator.isEmpty(employee.getLastname(), "lastname")
+                | validator.isEmpty(employee.getLastName(), "lastname")
                 | validator.isEmpty(employee.getAddress() + "", "address")
-                | validator.isEmpty(employee.getPhone_number() + "", "phone_number")
+                | validator.isEmpty(employee.getPhoneNumber() + "", "phone_number")
                 | validator.isEmpty(employee.getNote() + "", "note")
-                | validator.isNotDouble(employee.getCost_per_hour() + "", "cost_per_hour");
+                | validator.isNotDouble(employee.getCostPerHour() + "", "cost_per_hour");
     }
 
     @Override

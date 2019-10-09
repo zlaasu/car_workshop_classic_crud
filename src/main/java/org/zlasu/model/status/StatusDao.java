@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class StatusDao extends MainDao {
+
     private final String READ_BY_ID_QUERY = "SELECT id, name FROM status where id = ?";
     private final String DELETE_QUERY = "DELETE FROM status WHERE id = ?";
     private final String CREATE_QUERY = "INSERT INTO status(id, name) VALUES (?, ?)";

@@ -3,6 +3,7 @@ package org.zlasu.model;
 import java.util.List;
 
 public class Result {
+
     private Integer affectedRowsCount;
     private List<String[]> rows;
 

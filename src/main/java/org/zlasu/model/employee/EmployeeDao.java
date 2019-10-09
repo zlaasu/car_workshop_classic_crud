@@ -23,11 +23,11 @@ public class EmployeeDao extends MainDao {
         Employee employee = new Employee();
         employee.setId(resultSet.getInt("id"));
         employee.setName(resultSet.getString("name"));
-        employee.setLastname(resultSet.getString("lastname"));
+        employee.setLastName(resultSet.getString("lastname"));
         employee.setAddress(resultSet.getString("address"));
-        employee.setPhone_number(resultSet.getString("phone_number"));
+        employee.setPhoneNumber(resultSet.getString("phone_number"));
         employee.setNote(resultSet.getString("note"));
-        employee.setCost_per_hour(resultSet.getDouble("cost_per_hour"));
+        employee.setCostPerHour(resultSet.getDouble("cost_per_hour"));
         return employee;
     }
 
@@ -37,11 +37,11 @@ public class EmployeeDao extends MainDao {
         Employee status = (Employee) item;
         params.add(String.valueOf(status.getId()));
         params.add(status.getName());
-        params.add(status.getLastname());
+        params.add(status.getLastName());
         params.add(status.getAddress());
-        params.add(status.getPhone_number());
+        params.add(status.getPhoneNumber());
         params.add(status.getNote());
-        params.add(status.getCost_per_hour() + "");
+        params.add(status.getCostPerHour() + "");
         return params;
     }
 

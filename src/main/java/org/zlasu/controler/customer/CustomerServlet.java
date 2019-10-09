@@ -43,8 +43,8 @@ public class CustomerServlet extends MainServlet {
         Customer customer = (Customer) mainModel;
 
         return validator.isEmpty(customer.getName(), "name")
-                | validator.isEmpty(customer.getLastname(), "lastname")
-                | validator.isEmpty(customer.getDate_of_birth() + "", "date_of_birth");
+                | validator.isEmpty(customer.getLastName(), "lastname")
+                | validator.isEmpty(customer.getDateOfBirth() + "", "date_of_birth");
     }
 
     @Override

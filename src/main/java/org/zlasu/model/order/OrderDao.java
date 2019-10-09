@@ -31,17 +31,17 @@ public class OrderDao extends MainDao {
 //        order.setCustomer((Customer) new CustomerDao().readById(resultSet.getInt("customer_id")));
 //        order.setVehicle((Vehicle) new VehicleDao().readById(resultSet.getInt("vehicle_id")));
 //        order.setStatus((Status) new StatusDao().readById(resultSet.getInt("status_id")));
-        order.setCustomer_id(resultSet.getInt("customer_id"));
-        order.setVehicle_id(resultSet.getInt("vehicle_id"));
-        order.setStatus_id(resultSet.getInt("status_id"));
-        order.setDate_order_accepted(resultSet.getDate("date_order_accepted"));
-        order.setDate_repair_start(resultSet.getDate("date_repair_start"));
-        order.setProblem_description(resultSet.getString("problem_description"));
-        order.setRepair_description(resultSet.getString("problem_description"));
-        order.setCost_repair(resultSet.getDouble("cost_repair"));
-        order.setCost_parts(resultSet.getDouble("cost_parts"));
-        order.setCost_per_hour(resultSet.getDouble("cost_per_hour"));
-        order.setNumber_of_man_hours(resultSet.getInt("number_of_man_hours"));
+        order.setCustomerId(resultSet.getInt("customer_id"));
+        order.setVehicleId(resultSet.getInt("vehicle_id"));
+        order.setStatusId(resultSet.getInt("status_id"));
+        order.setDateOrderAccepted(resultSet.getDate("date_order_accepted"));
+        order.setDateRepairStart(resultSet.getDate("date_repair_start"));
+        order.setProblemDescription(resultSet.getString("problem_description"));
+        order.setRepairDescription(resultSet.getString("problem_description"));
+        order.setCostRepair(resultSet.getDouble("cost_repair"));
+        order.setCostParts(resultSet.getDouble("cost_parts"));
+        order.setCostPerHour(resultSet.getDouble("cost_per_hour"));
+        order.setNumberOfManHours(resultSet.getInt("number_of_man_hours"));
         return order;
     }
 
@@ -50,17 +50,17 @@ public class OrderDao extends MainDao {
         ArrayList<String> params = new ArrayList();
         Order order = (Order) item;
         params.add(order.getId() + "");
-        params.add(order.getCustomer_id() + "");
-        params.add(order.getVehicle_id() + "");
-        params.add(order.getStatus_id() + "");
-        params.add(dateFormat.format(order.getDate_order_accepted()) + "");
-        params.add(dateFormat.format(order.getDate_repair_start()) + "");
-        params.add(order.getProblem_description());
-        params.add(order.getRepair_description());
-        params.add(order.getCost_repair() + "");
-        params.add(order.getCost_parts() + "");
-        params.add(order.getCost_per_hour() + "");
-        params.add(order.getNumber_of_man_hours() + "");
+        params.add(order.getCustomerId() + "");
+        params.add(order.getVehicleId() + "");
+        params.add(order.getStatusId() + "");
+        params.add(dateFormat.format(order.getDateOrderAccepted()) + "");
+        params.add(dateFormat.format(order.getDateRepairStart()) + "");
+        params.add(order.getProblemDescription());
+        params.add(order.getRepairDescription());
+        params.add(order.getCostRepair() + "");
+        params.add(order.getCostParts() + "");
+        params.add(order.getCostPerHour() + "");
+        params.add(order.getNumberOfManHours() + "");
         return params;
     }
 

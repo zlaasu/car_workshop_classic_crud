@@ -10,11 +10,12 @@ import java.util.Date;
 @Getter
 @Setter
 public class Vehicle extends MainModel implements MainModelInterface {
+
     private int id;
-    private int customer_id;
+    private int customerId;
     private String model;
     private String brand;
-    private int year_of_production;
-    private String registration_number;
-    private Date next_technical_inspection;
+    private int yearOfProduction;
+    private String registrationNumber;
+    private Date nextTechnicalInspection;
 }
