@@ -18,4 +18,5 @@ public class Result {
     public void setRows(List<String[]> rows) {
         this.rows = rows;
     }
+
 }

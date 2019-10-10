@@ -2,6 +2,8 @@ package org.zlasu.controler.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebFilter("/*")
@@ -10,12 +12,21 @@ public class EncodingFilter implements Filter {
     private String charsetEncoding = "utf-8";
     private String contentType = "application/json";
 
-    public void doFilter(ServletRequest request, ServletResponse response,
+    public void doFilter(ServletRequest requestSer, ServletResponse responseSer,
                          FilterChain filterChain) throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) requestSer;
+        HttpServletResponse response = (HttpServletResponse) responseSer;
         request.setCharacterEncoding(charsetEncoding);
         response.setContentType(contentType);
         response.setCharacterEncoding(charsetEncoding);
-        filterChain.doFilter(request, response);
+        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+        response.setHeader("Vary", "Origin");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
+
+        filterChain.doFilter(requestSer, responseSer);
     }
 
     public void destroy() {
