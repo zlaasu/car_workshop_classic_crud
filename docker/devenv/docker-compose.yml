@@ -3,8 +3,8 @@ services:
   tomcat:
     image: bitnami/tomcat:latest
     environment:
-      - TOMCAT_USERNAME=root
-      - TOMCAT_PASSWORD=qqq123
+      - TOMCAT_USERNAME=zlasu
+      - TOMCAT_PASSWORD=qqq123qqq
     ports:
       - 0:8080
     volumes:
