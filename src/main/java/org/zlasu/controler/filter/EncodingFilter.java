@@ -19,12 +19,12 @@ public class EncodingFilter implements Filter {
         request.setCharacterEncoding(charsetEncoding);
         response.setContentType(contentType);
         response.setCharacterEncoding(charsetEncoding);
-        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
-        response.setHeader("Vary", "Origin");
-        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
-        response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
+        response.setHeader("Access-Control-Allow-Headers", "*");
+        response.setHeader("Access-Control-Request-Headers", "X-Requested-With, accept, content-type");
+
+
 
         filterChain.doFilter(requestSer, responseSer);
     }
