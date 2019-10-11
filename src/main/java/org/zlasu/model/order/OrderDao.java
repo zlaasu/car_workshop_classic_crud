@@ -37,7 +37,7 @@ public class OrderDao extends MainDao {
         order.setDateOrderAccepted(resultSet.getDate("date_order_accepted"));
         order.setDateRepairStart(resultSet.getDate("date_repair_start"));
         order.setProblemDescription(resultSet.getString("problem_description"));
-        order.setRepairDescription(resultSet.getString("problem_description"));
+        order.setRepairDescription(resultSet.getString("repair_description"));
         order.setCostRepair(resultSet.getDouble("cost_repair"));
         order.setCostParts(resultSet.getDouble("cost_parts"));
         order.setCostPerHour(resultSet.getDouble("cost_per_hour"));
