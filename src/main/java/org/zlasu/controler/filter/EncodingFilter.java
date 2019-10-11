@@ -19,7 +19,7 @@ public class EncodingFilter implements Filter {
         request.setCharacterEncoding(charsetEncoding);
         response.setContentType(contentType);
         response.setCharacterEncoding(charsetEncoding);
-        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
         response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
         response.setHeader("Access-Control-Request-Headers", "X-Requested-With, accept, content-type, Authorization");
