@@ -22,7 +22,7 @@ public class EncodingFilter implements Filter {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
         response.setHeader("Access-Control-Allow-Headers", "*");
-        response.setHeader("Access-Control-Request-Headers", "X-Requested-With, accept, content-type");
+        response.setHeader("Access-Control-Request-Headers", "X-Requested-With, accept, content-type, Authorization");
 
         filterChain.doFilter(requestSer, responseSer);
     }
