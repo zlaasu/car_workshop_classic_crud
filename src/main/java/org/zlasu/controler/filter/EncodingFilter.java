@@ -24,8 +24,6 @@ public class EncodingFilter implements Filter {
         response.setHeader("Access-Control-Allow-Headers", "*");
         response.setHeader("Access-Control-Request-Headers", "X-Requested-With, accept, content-type");
 
-
-
         filterChain.doFilter(requestSer, responseSer);
     }
 
@@ -34,4 +32,5 @@ public class EncodingFilter implements Filter {
 
     public void init(FilterConfig config) throws ServletException {
     }
+
 }

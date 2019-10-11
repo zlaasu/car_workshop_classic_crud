@@ -14,6 +14,7 @@ public class EmployeeAuthDao {
 
     private final String READ_BY_ID_QUERY = "SELECT id, email, password, token FROM employee WHERE id = ?;";
     private final String READ_BY_EMAIL_QUERY = "SELECT id, email, password, token FROM employee WHERE email = ?;";
+    private final String READ_BY_TOKEN_QUERY = "SELECT id, email, password, token FROM employee WHERE token = ?;";
     private final String UPDATE_BY_EMAIL_QUERY = "UPDATE employee SET email = ?, password = ?, token = ? WHERE id = ?;";
 
     public EmployeeAuth readById(int id) {
@@ -22,6 +23,10 @@ public class EmployeeAuthDao {
 
     public EmployeeAuth readByEmail(String email) {
         return readByString(email, READ_BY_EMAIL_QUERY);
+    }
+
+    public EmployeeAuth readByToken(String tokenHeader) {
+        return readByString(tokenHeader, READ_BY_TOKEN_QUERY);
     }
 
     private EmployeeAuth readByString(String string, String query) {
