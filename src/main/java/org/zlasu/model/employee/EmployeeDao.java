@@ -9,14 +9,15 @@ import java.util.ArrayList;
 
 public class EmployeeDao extends MainDao {
 
-    private final String READ_BY_ID_QUERY = "SELECT id, name, lastname, address, phone_number, note, cost_per_hour " +
-            "FROM employee where id = ?";
+    private final String READ_BY_ID_QUERY = "SELECT id, name, lastname, address, phone_number, note, cost_per_hour, " +
+            " email FROM employee where id = ?";
     private final String DELETE_QUERY = "DELETE FROM employee WHERE id = ?";
     private final String CREATE_QUERY = "INSERT INTO employee(id, name, lastname, address, phone_number, note, " +
-            "cost_per_hour) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            "cost_per_hour, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private final String UPDATE_QUERY = "UPDATE employee SET name = ?, lastname = ?, address = ?, phone_number = ?," +
             " note = ?, cost_per_hour = ? where id = ?";
-    private final String FIND_ALL_QUERY = "SELECT id, name, lastname, address, phone_number, note, cost_per_hour FROM employee";
+    private final String FIND_ALL_QUERY = "SELECT id, name, lastname, address, phone_number, note, cost_per_hour, " +
+            " email FROM employee";
 
     @Override
     protected MainModelInterface newObjectFromResultSet(ResultSet resultSet) throws SQLException {
@@ -28,6 +29,7 @@ public class EmployeeDao extends MainDao {
         employee.setPhoneNumber(resultSet.getString("phone_number"));
         employee.setNote(resultSet.getString("note"));
         employee.setCostPerHour(resultSet.getDouble("cost_per_hour"));
+        employee.setEmail(resultSet.getString("email"));
         return employee;
     }
 
@@ -42,6 +44,7 @@ public class EmployeeDao extends MainDao {
         params.add(status.getPhoneNumber());
         params.add(status.getNote());
         params.add(status.getCostPerHour() + "");
+        params.add(status.getEmail());
         return params;
     }
 
@@ -70,4 +73,22 @@ public class EmployeeDao extends MainDao {
         return FIND_ALL_QUERY;
     }
 
+//    public Employee readByEmail(String email) {
+//
+//        try (Connection connection = DbConnector.getConnection()) {
+//            try (PreparedStatement preparedStatement = connection.prepareStatement(READ_BY_EMAIL_QUERY)) {
+//                preparedStatement.setString(1, email);
+//                ResultSet resultSet = preparedStatement.executeQuery();
+//
+//                if (resultSet.next()) {
+//                    return (Employee) newObjectFromResultSet(resultSet);
+//                }
+//
+//                resultSet.close();
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 }

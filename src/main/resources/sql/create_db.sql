@@ -9,7 +9,11 @@ CREATE TABLE employee
     phone_number  VARCHAR(20),
     note          VARCHAR(255),
     cost_per_hour DOUBLE,
-    PRIMARY KEY (id)
+    password      VARCHAR(255),
+    token         VARCHAR(255),
+    email         VARCHAR(255),
+    PRIMARY KEY (id),
+    UNIQUE (email)
 );
 
 CREATE TABLE customer
@@ -30,8 +34,7 @@ CREATE TABLE vehicle
     year_of_production        int,
     registration_number       VARCHAR(10),
     next_technical_inspection DATE,
-    PRIMARY KEY (id),
-    CONSTRAINT FOREIGN KEY (customer_id) REFERENCES customer (id)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE status

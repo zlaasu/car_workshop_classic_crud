@@ -2,6 +2,7 @@ package org.zlasu.model.employee;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.mindrot.jbcrypt.BCrypt;
 import org.zlasu.model.MainModelInterface;
 import org.zlasu.model.MainModel;
 
@@ -16,4 +17,5 @@ public class Employee extends MainModel implements MainModelInterface {
     private String phoneNumber;
     private String note;
     private Double costPerHour;
+    private String email;
 }

@@ -1,10 +1,9 @@
 package org.zlasu.controler.filter;
 
-import org.zlasu.controler.Login;
+import org.zlasu.controler.auth.Login;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -17,11 +16,10 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) requestSer;
         HttpServletResponse response = (HttpServletResponse) responseSer;
 
-        String path = ((HttpServletRequest) request).getRequestURI();
-
+        String path = request.getRequestURI();
         String token = request.getHeader("Token");
 
-        if (path.startsWith("/login/") || path.startsWith("/register/") || Login.checkTokenForUser(token)) {
+        if (path.startsWith("/backend/login") || path.startsWith("/backend/register") || Login.checkTokenForUser(token)) {
             filterChain.doFilter(request, response);
             return;
         }
