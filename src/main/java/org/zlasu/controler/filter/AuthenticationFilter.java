@@ -26,7 +26,8 @@ public class AuthenticationFilter implements Filter {
             return;
         }
 
-        ((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");
+        filterChain.doFilter(request, response);
+        //((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");
     }
 
     private static boolean isValidToken(HttpServletRequest request) {
