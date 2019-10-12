@@ -35,19 +35,23 @@ public class AuthenticationFilter implements Filter {
         String tokenHeader = request.getHeader("Authorization");
 
         if (tokenHeader == null || !tokenHeader.equals(tokenSession)) {
+            System.out.println("NO TOKEN");
             return false;
         }
 
         if (tokenSession != null && tokenHeader.equals(tokenSession)) {
+            System.out.println("TOKEN SESSION = TOKEN HEADER");
             return true;
         }
 
         if (tokenSession == null && tokenHeader != null) {
             EmployeeAuthDao employeeAuthDao = new EmployeeAuthDao();
             EmployeeAuth employeeAuth = employeeAuthDao.readByToken(tokenHeader);
+            System.out.println("SESSION TOKEN EMPTY, HEADER TOKEN PRESENT");
 
             if (employeeAuth != null) {
                 LoginServlet.setUserSession(session, employeeAuth);
+                System.out.println("SESSION SET FOR HEADER TOKEN");
                 return true;
             }
         }
